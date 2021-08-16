@@ -38,6 +38,21 @@ The number of nodes in the tree is in the range [0, 104].
 Each node has a unique value.
 root is a valid binary search tree.
 -105 <= key <= 105
+
+Solution Summary:-
+
+Three cases to handle.
+1. Deletion of leaf node.
+   Once node found return None as return and replace the calling node as None.
+2. Deletion of with single child.
+   Once node found return whichever child present as return and replace the calling node.
+3. Deletion of with both child.
+  a. Find of the left tree's max node or right tree's min value and replace it with current node value.
+  b. Call the recursive deletion call again from here on left tree + its max value or right tree + its min value, Now the recursion will always comes in above two category.
+  c. return always updated node with replacement as discussed in point a.
+
+
+
 """
 
 

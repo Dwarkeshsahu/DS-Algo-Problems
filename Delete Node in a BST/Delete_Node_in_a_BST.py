@@ -102,3 +102,58 @@ class Solution:
     def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
         return self.deleteNodeHelper(root, key)
         
+#########################################################
+"""
+Solution 2:-
+
+Without return statement in 3rd case
+
+"""
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    
+    def findMax(self,node):
+        if node.right is None:
+            return node
+        
+        return self.findMax(node.right)
+        
+    
+    
+    def deleteNodeHelper(self, node, key):
+        
+        if node is None:
+            return node
+        
+        if node.val == key:
+            if node.left is None and node.right is None:
+                return None
+            elif node.left is None or node.right is None:
+                if node.left is not None:
+                    return node.left
+                return node.right
+            else:
+                maxNode = self.findMax(node.left)
+                node.val = maxNode.val
+                node.left = self.deleteNodeHelper(node.left, maxNode.val)
+                
+
+        elif node.val > key:
+            node.left = self.deleteNodeHelper(node.left, key)
+        else:
+            node.right = self.deleteNodeHelper(node.right, key)
+            
+        return node
+        
+    
+    def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
+        return self.deleteNodeHelper(root, key)
+        
+      
+      
+      

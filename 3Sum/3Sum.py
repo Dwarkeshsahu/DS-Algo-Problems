@@ -27,6 +27,7 @@ Constraints:
 Sol:-
 Same as using Two sum with extra loop for third value
 
+O(N^2) Time
 """
 
 class Solution:
